@@ -1,14 +1,16 @@
 class Post < ApplicationRecord
-  has_many :likes, foreign_key: 'post_id', class_name: 'Like'
-  has_many :comments, foreign_key: 'post_id', class_name: 'Comment'
+  belongs_to :user
+  has_many :comments
+  has_many :likes
+  after_save :update_post_counter
 
-  belongs_to :author, class_name: 'User'
+  private
 
   def update_post_counter
-    user.increment!(:post_counter)
+    user.increment!(:postscounter)
   end
 
   def recent_comments
-    comments.limit(5).order(created_at: :desc)
+    comments.order('created_at Desc').last(5)
   end
 end
