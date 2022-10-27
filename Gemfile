@@ -26,8 +26,9 @@ gem 'stimulus-rails'
 gem 'jbuilder'
 gem 'rubocop', '>= 1.0', '< 2.0'
 # Use Redis adapter to run Action Cable in production
-# gem "redis", "~> 4.0"
 gem 'rails-controller-testing'
+# gem "redis", "~> 4.0"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -35,8 +36,8 @@ gem 'rails-controller-testing'
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo'
 gem 'tzinfo-data'
+gem 'tzinfo'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
