@@ -1,1 +1,19 @@
-<h1>Single post information</h1>
+<section class="container">
+<div class="single-header">
+  <div class="single-post-header">
+    <p>Post by: <%=@user.name%></p>
+    <h4><span>Comment <%= @post.commentscounter %></span> <span>|</span> <span>Likes <%= @post.likescounter %></span></h4>
+  </div>
+  <div class ="single-post-body">
+    <h4><%=@post.title%></h4>
+    <p><%=@post.text%></p>
+  </div>
+  </div>
+  <div class = "single-post-comments">
+    <% @comments.each do |comment|%>
+      <div>
+        <p><%=comment.Text%></p>
+      </div>
+      <%end%>
+  </div>
+</section>
