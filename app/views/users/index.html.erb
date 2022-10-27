@@ -1,16 +1,4 @@
-<section class="container">
-<h1 class="fw-bold">All Users</h1>
-  <%@users.each do |user|%>
-  <%= link_to user_path(user.id) do %>
-    <div class="card">
-      <div class='user_img'>
-        <i class="fa fa-user"></i>
-      </div>
-      <div class ='user_info'>
-        <h2><%=user.name%></h2>
-        <p class="posts">Number of posts <%=user.postscounter%></p>
-      </div>
-  </div>
-    <%end%>
-  <%end%>
-</section>
+<% @users.each do |user| %>
+<%= render partial: 'partials/user', locals: { user: user } %>
+<% end %>
+Footer
