@@ -1,0 +1,65 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.fa-user {
+  font-size: 100px;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  border: 1px solid #111;
+  cursor: pointer;
+  margin: 7px 0;
+}
+
+.user-info {
+  display: flex;
+}
+
+.posts {
+  float: right;
+}
+
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #111;
+  padding: 5px;
+  margin-top: 15px;
+}
+
+.user_post {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #111;
+  margin: 10px 0;
+  padding: 5px 7px;
+  align-items: center;
+}
+
+.user_bio {
+  border: 1px solid #111;
+  margin: 10px 0;
+  padding: 5px 7px;
+  align-items: center;
+}
+
+.single-header {
+  border: 1px solid #111;
+  padding: 5px;
+  margin: 10px 0;
+}
+
+.single-post-header {
+  display: flex;
+  justify-content: space-between;
+}
