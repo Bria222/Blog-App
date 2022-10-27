@@ -1,13 +1,21 @@
-<article class="post-snipet">
-    <h3><%= @post.title %>  by <%= @post.author.name %></h3>
-    <div class="post-stats">
-      <span>Comments <%= @post.comments_counter %> &nbsp;,&nbsp;</span>
-      <span>Likes <%= @post.likes_counter %></span>
+<div>
+    <h1 class='users_heading'>Post Details</h1>
+   <div class='post_card'>
+    <div class=' d-flex justify-content-between'>
+        <h4><%= @post.title %> by <%= link_to user_path(@post.author.id) do %> <%= @post.author.name %> <% end %></h4>
+        <p>Comments : <%= @post.comments_counter || 0 %> Likes : <%= @post.likes.size || 0 %> </p>
     </div>
-    <p><%= @post.text %></p>
-  </article>
-  <ul class="comments">
-    <% @post.recent_comments.each do |comment| %>
-      <li><%= comment.author.name %>: <%= comment.text %>
-    <% end %>
-  </ul>
+        <%= @post.text %>
+    </div>
+
+
+
+    <div class='post_card'>
+        <% @post.comments.each do |c| %>
+            <div class='comment-card'>
+                    <%= c.author.name %> : <%= c.text %>
+                </div>
+      <% end %>
+    </div>
+
+</div>
