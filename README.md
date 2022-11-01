@@ -38,13 +38,17 @@ To get a local copy up and running follow these simple example steps.
 
 ## Author
 
-## Brian nyachae
+👤 **Brian nyachae**
 
-- Github: [@Bria222(https://github.com/Bria222)
-- Twitter: [@Bria222(https://twitter.com/briannyachae9)
+- Github: [@Bria222](https://github.com/Bria222)
+- Twitter: [@Bria222](https://twitter.com/briannyachae9)
 - Linkedin: [brian nyachae](https://www.linkedin.com/in/brian-nyachae)
 
+👤 **Anas Abubakar Bassi**
 
+- GitHub: [@anasbassi](https://github.com/anasbassi)
+- Twitter: [@anasabu92568449](https://twitter.com/anasabu92568449)
+- LinkedIn: [Anas Abubakar](https://www.linkedin.com/in/anas-abubakar-bassi/)
 
 ## 🤝 Contributing
 
