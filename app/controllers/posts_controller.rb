@@ -1,38 +1,37 @@
 class PostsController < ApplicationController
   def index
-    user_id = params[:user_id]
-    @user = User.find(user_id)
-    @posts = @user.posts.order(created_at: :desc)
+    @user = User.find(params[:user_id])
+    @posts = @user.posts.includes(:comments)
   end
 
   def show
-    user_id = params[:user_id]
-    id = params[:id]
-    @user = User.find(user_id)
-    @post = Post.find(id)
-    @comments = @post.comments.order(created_at: :desc)
-    @likes = @post.likes.all
+    @post = Post.find(params[:id])
+    @user = @post.user
+    @comments = @post.comments
   end
 
   def new
-    @current = current_user
+    @post = Post.new
   end
 
   def create
-    new_post = current_user.posts.build(post_params)
+    @post = current_user.posts.new(post_params)
+    @post.likescounter = 0
+    @post.commentscounter = 0
+    @post.update_post_counter
 
     respond_to do |format|
       format.html do
-        if new_post.save
-          redirect_to user_post_path(new_post.author_id, new_post.id), notice: 'Post was successfully created.'
+        if @post.save
+          flash[:success] = 'Post saved successfully'
+          redirect_to user_post_path(current_user, @post.id)
         else
-          render :new, alert: 'Post was not created.'
+          flash.now[:error] = 'Error: Post could not be saved. Please try again.'
+          render :new
         end
       end
     end
   end
-
-  private
 
   def post_params
     params.require(:post).permit(:title, :text)
