@@ -32,6 +32,31 @@ body {
   float: right;
 }
 
+.navbar {
+  background-color: #111;
+  color: #fff;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar ul {
+  list-style-type: none;
+}
+
+.navbar ul li {
+  margin: 0 2rem;
+}
+
+.btn-outline-success {
+  background-color: red;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #fff;
+}
+
 .user-header {
   display: flex;
   justify-content: space-between;
