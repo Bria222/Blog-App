@@ -35,4 +35,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    post = Post.find(params[:id])
+    user = User.find(post.user_id)
+    user.postscounter -= 1
+    post.destroy
+    user.save
+    flash[:success] = 'You have deleted the post successfully!'
+    redirect_to user_path(current_user.id)
+    authorize! :destroy, @post
+  end
+
 end
