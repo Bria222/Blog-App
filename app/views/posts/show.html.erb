@@ -3,6 +3,9 @@
   <div class="single-post-header">
     <p>Post by: <%=@user.name%></p>
     <h4><span>Comment <%= @post.commentscounter %></span> <span>|</span> <span>Likes <%= @post.likescounter %></span></h4>
+     <% if can? :destroy, @post %>
+          <%= button_to "Delete post", user_post_path(@user.id, @post.id), :method => :delete, data: {confirm: 'Are you sure? '}, class: 'btn-danger btn-sm' %>
+      <% end%>
   </div>
   <div class ="single-post-body">
     <h4><%=@post.title%></h4>
@@ -14,6 +17,9 @@
       <div>
         <p><%= comment.user.name %>: <%=comment.Text%></p>
       </div>
+       <% if can? :destroy, comment %>
+          <%= button_to "Delete comment", post_comment_path(comment_id: comment.id, post_id: @post.id, user_id: @post.user.id), :method => :delete, class: 'btn btn-danger btn-sm'%>
+        <% end %>
       <%end%>
   </div>
      <div class="post_details_likes">
@@ -22,4 +28,5 @@
       <div class="post_details_comments">
         <%= render "posts/comment_form" %>
       </div>
+     
 </section>

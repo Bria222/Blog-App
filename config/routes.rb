@@ -7,13 +7,15 @@ Rails.application.routes.draw do
   end
   
   root "users#index"
+ 
   resources :users, only: %i[index show] do
-    resources :posts, only: %i[index show new create]
+    resources :posts, only: %i[index new create show destroy] do
+    end
   end
 
-  resources :posts do
-    resources :comments, only: %i[new, create]
-    resources :likes, only: %i[create]
+  resources :posts, only: [:new, :create, :update, :destroy] do
+    resources :comments
+    resources :likes
   end
   
   if Rails.env.development? 
