@@ -46,4 +46,8 @@ class PostsController < ApplicationController
     authorize! :destroy, @post
   end
 
+  def post_params
+    params.require(:post).permit(:title, :text)
+  end
+
 end
