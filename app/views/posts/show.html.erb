@@ -1,25 +1,33 @@
-<section class="container">
-<div class="single-header">
-  <div class="single-post-header">
-    <p>Post by: <%=@user.name%></p>
-    <h4><span>Comment <%= @post.commentscounter %></span> <span>|</span> <span>Likes <%= @post.likescounter %></span></h4>
-  </div>
-  <div class ="single-post-body">
-    <h4><%=@post.title%></h4>
-    <p><%=@post.text%></p>
-  </div>
-  </div>
-  <div class = "single-post-comments">
-    <% @comments.each do |comment|%>
-      <div>
-        <p><%= comment.user.name %>: <%=comment.Text%></p>
-      </div>
-      <%end%>
-  </div>
-     <div class="post_details_likes">
-        <%= render "posts/like_form" %>
-      </div>
-      <div class="post_details_comments">
-        <%= render "posts/comment_form" %>
-      </div>
-</section>
+<div>
+    <nav class="fs-6 p-3 container mt-2 p-2 bio">
+      <%= link_to "Home", root_path, class: "button px-3" %>
+    </nav>
+    <h1 class='users_heading'>Post Details</h1>
+   <div class='post_card'>
+    <div class=' d-flex justify-content-between'>
+        <h4><%= @post.title %> by <%= link_to user_path(@post.author.id) do %> <%= @post.author.name %> <% end %></h4>
+        <p>Comments : <%= @post.comments_counter || 0 %> Likes : <%= @post.likes.size || 0 %> </p>
+    </div>
+        <%= @post.text %>
+    </div>
+
+    <div class='post_card'>
+        <% @post.comments.each do |c| %>
+            <div class='comment-card'>
+                    <%= c.author.name %> : <%= c.text %>
+                </div>
+                <% if can? :destroy, c %>
+          <%= button_to "Delete Comment", user_post_comment_path(@post.author.id,@post.id, c.id ), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>)),
+
+        <% end %>
+      <% end %>
+    </div>
+    <% if can? :destroy, @post %>
+            <%= button_to "Delete Post", user_post_path(@post.author.id,@post.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+    <% end %>
+
+
+    <%= render partial: "likes/create" %>
+    <%= render partial: 'comments/create' %>
+
+</div>

@@ -1,33 +1,39 @@
-<section class="container">
-  <div class="user-header"> 
-    <div class="user-icon">
-      <i class="fa fa-user"></i>
-    </div>
-    <div class="user_name">
-      <h1><%=@user.name%>
-    </div>
-    <h4>Number of posts: <%= @user.postscounter %></h4>
-    <div class="btn_create_post">
-        <%= link_to "Create New Post", new_user_post_path , class: "btn_post_new" %>
-     </div>
-  </div>
-  <% @posts.each_with_index do |post, index| %>
-      <%=link_to user_post_path(@user.id,post.id) do %>
-        <div class="user_post">
-            <div>
-              <h3>Post #<%=index+1%>: <%= post.title %></h3>
-              <p><%= post.text %></p>
-            </div>
-              <h4><span>Comment <%= post.commentscounter %></span> <span>|</span> <span>Likes <%= post.likescounter %></span></h4>
+<div class="home d-flex mx-5 justify-content-between my-3">
+<%= link_to "Home", root_path, class: "button px-3" %>
+<%= link_to "Back", :back, class: "button px-3" %>
+</div>
+
+
+<h1 class="users_heading"> List of Posts from the User</h1>
+
+<%= render partial: 'users/user_profile', locals: {user: current_user} %>
+<button class="button d-flex justify-content-center">
+    <%= link_to "Create new post", new_user_post_path(current_user.id) %>
+</button>
+
+<% current_user.posts.each do |post| %>
+    <div class='post_card'>
+        <div class="post-details">
+        <%= link_to user_post_path(current_user.id, post.id), id: "user_post#{post.id}" do %>
+            <h3><%= post.title %></h3>
+            <p><%= post.text.truncate(30) %></p>
+        <% end %>
         </div>
-      <% end %>
-       <% if post.recent_comments.length == 0 %>
-            <p>No comments Available!</p>
-          <% else %>
+        <div class='interactions'>
+            <span>Comments: <%= post.comments_counter || 0 %></span>
+            <span>Likes: <%= post.likes_counter || 0 %></span>
+        </div>
+    </div>
+
+        <div class="post_card post_comments">
             <% post.recent_comments.each do |comment| %>
-              <p><%=comment.user.name %>: <%=comment.Text %></p>
-            <%end%>
-          <% end %>
-    <% end %>
-    <button>Pagination</button>
-</section>
+                <div class='comment-card'>
+                    <%= comment.author.name %> : <%= comment.text %>
+                </div>
+            <% end %>
+        </div>
+<% end %>
+
+
+
+
